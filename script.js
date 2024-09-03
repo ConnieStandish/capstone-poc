@@ -50,25 +50,25 @@ function stop () {
     // console.log(`Total distance: ${distance.toFixed(2)} meters`)
 }
 
-// function updateMap(position) {
-//     if (tracking) {
-//         const latLong = [position.coords.latitude, position.coordslongitude]
-//     }
+function updateMap(position) {
+    if (tracking) {
+        const latLong = [position.coords.latitude, position.coordslongitude]
+    }
 
-//     if(positions.length > 0) {
-//         const lastPos = positions[positions.length - 1]
-//         const distanceLastPos = calculateDistance(lastPos, latLong)
+    if(positions.length > 0) {
+        const lastPos = positions[positions.length - 1]
+        const distanceLastPos = calculateDistance(lastPos, latLong)
 
-//         if (distanceLastPos > 1)
-//             positions.push(latLng)
-//             route.addLatLng(latLong)
-//             map.setView(latLong, 15)
-//     } else {
-//         positions.push(latLong)
-//         route.addLatLng(latLong)
-//         map.setView(latLong, 15)
-//     }
-// }
+        if (distanceLastPos > 1)
+            positions.push(latLong)
+            route.addLatLng(latLong)
+            map.setView(latLong, 15)
+    } else {
+        positions.push(latLong)
+        route.addLatLng(latLong)
+        map.setView(latLong, 15)
+    }
+}
 
 
 function success(position) {
