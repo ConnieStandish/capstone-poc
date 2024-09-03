@@ -2,7 +2,7 @@ let map = L.map('map').setView([51.505, -0.09], 13);
 let route = null
 let marker = null
 let tracking = false;
-let positions = []
+let position = []
 let startRun, finishRun
 
 
@@ -50,25 +50,25 @@ function stop () {
     // console.log(`Total distance: ${distance.toFixed(2)} meters`)
 }
 
-function updateMap(position) {
-    if (tracking) {
-        const latLong = [position.coords.latitude, position.coordslongitude]
-    }
+// function updateMap(position) {
+//     if (tracking) {
+//         const latLong = [position.coords.latitude, position.coordslongitude]
+//     }
 
-    if(positions.length > 0) {
-        const lastPos = positions[positions.length - 1]
-        const distanceLastPos = calculateDistance(lastPos, latLong)
+//     if(positions.length > 0) {
+//         const lastPos = positions[positions.length - 1]
+//         const distanceLastPos = calculateDistance(lastPos, latLong)
 
-        if (distanceLastPos > 1)
-            positions.push(latLong)
-            route.addLatLng(latLong)
-            map.setView(latLong, 15)
-    } else {
-        positions.push(latLong)
-        route.addLatLng(latLong)
-        map.setView(latLong, 15)
-    }
-}
+//         if (distanceLastPos > 1)
+//             positions.push(latLong)
+//             route.addLatLng(latLong)
+//             map.setView(latLong, 15)
+//     } else {
+//         positions.push(latLong)
+//         route.addLatLng(latLong)
+//         map.setView(latLong, 15)
+//     }
+// }
 
 
 function success(position) {
@@ -81,7 +81,7 @@ function success(position) {
 
     if(marker) {
         map.removeLayer(marker);
-        map.removeLayer(route);
+        // map.removeLayer(route);
     }
 
     marker = L.marker([lat1, lng1]).addTo(map);
