@@ -31,6 +31,25 @@ function start() {
     }
 }
 
+// Distance Formula Set Up
+// getHaversineDistance = (firstLocation, secondLocation) => {
+//         const earthRadius = 6371; // km 
+    
+//         const diffLat = (secondLocation[0] - firstLocation[0]) * Math.PI / 180;  
+//         const diffLng = (secondLocation[1] - firstLocation [1]) * Math.PI / 180;  
+    
+//         const arc = Math.cos(
+//                         firstLocation[0] * Math.PI / 180) * Math.cos(secondLocation[0] * Math.PI / 180) 
+//                         * Math.sin(diffLng/2) * Math.sin(diffLng/2)
+//                         + Math.sin(diffLat/2) * Math.sin(diffLat/2);
+
+//         const line = 2 * Math.atan2(Math.sqrt(arc), Math.sqrt(1-arc));
+    
+//         const distance = earthRadius * line; 
+    
+//         return distance;
+//     }
+
 function stop() {
     tracking = false;
     finishRun = new Date();
@@ -40,34 +59,18 @@ function stop() {
     const timeSeconds = Math.floor(time % 60);
     console.log(timeMinutes + ' minutes and '  + timeSeconds + ' seconds');
 
+    //Calculate Distance in Stop Function
+    // let totalDistance = 0
+    // for (let i=1; i < positions.length; i++) {
+    // }
+
     //Stops the Geolocation tracking
     if (watchId) {
         navigator.geolocation.clearWatch(watchId);
     }
+
+    
 }
-
-//Calculate Distance
-// function haversineFormula(lat1, lng1, lat2, lng2) {
-//     positions = [lat1, lng1, lat2, lng2]
-//     if (!tracking) {
-//         ((lat1 === lat2) && (lng1 === lng2))
-//         return 0 
-//     }  else {
-//         var radlat1 = Math.PI * lat1/180
-//         var radlat2 = Math.PI * lat2/180
-//         var theta = lng1 - lng2
-//         var radtheta = Math.PI * theta/180
-//         var distance = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-//         if (distance > 1) {
-//             distance = 1
-//         }
-// 		distance = Math.acos(distance)
-//         distance = distance * 180/Math.PI
-//         distance =  distance * 60 * 1.1515
-//         return distance
-//     }
-// }
-
 
 function success(position) {
     //If tracking is not active, then exit.
@@ -128,3 +131,12 @@ function error(err) {
     //     return distance;
     // }
  
+    // function haversineFormula(firstLocation, secondLocation) {
+//     const earthRad = 6371
+   
+//     const diffLat = (secondLocation[0] - firstLocation[0]) * Math.PI / 180
+//     const diffLng = (secondLocation[1] - firstLocation[1]) * Math.PI / 180
+
+//     const arc = Math.cos(firstLocation[0] * Math.PI / 180) * Math.cos(secondLocation[0] * Math.PI / 180) * Math.sin(diffLng/2) * Math.sin(diffLng/2) +  Math.sin(diffLat/2) * Math.sin(diffLat/2)
+    
+// }
