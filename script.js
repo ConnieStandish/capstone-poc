@@ -54,6 +54,7 @@ function success(position) {
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
     const latLong = [lat, lng];
+    console.log(latLong)
     
     // Add the new position to the route and positions array
     positions.push(latLong);
@@ -67,7 +68,32 @@ function success(position) {
     }
 
     map.setView(latLong, 15);
+
+    // let lat1 = position.coords.latitude;
+    // let lng1 = position.coords.longitude;
+    // let lat2 = position.coords.latitude;
+    // let lng2 = position.coords.longitude;
+
+    // function haversineFormula() {
+
+    //     let dLat = (lat2 - lat1) * Math.PI / 180.0;
+    //     let dLon = (lng2 - lng1) * Math.PI / 180.0;
+
+    //     lat1 = (lat1) * Math.PI / 180.0;
+    //     lat2 = (lat2) * Math.PI / 180.0;
+
+    //     let a = Math.pow(Math.sin(dLat / 2), 2) + 
+    //                Math.pow(Math.sin(dLon / 2), 2) * 
+    //                Math.cos(lat1) * 
+    //                Math.cos(lat2);
+    //     let rad = 6371;
+    //     let c = 2 * Math.asin(Math.sqrt(a));
+
+    //     return rad * c
+    // }
+    // console.log(haversineFormula(lat1, lng1, lat2, lng2 + "km"))
 }
+
 
 function error(err) {
     if (err.code === 1) {
