@@ -68,30 +68,6 @@ function success(position) {
     }
 
     map.setView(latLong, 15);
-
-    // let lat1 = position.coords.latitude;
-    // let lng1 = position.coords.longitude;
-    // let lat2 = position.coords.latitude;
-    // let lng2 = position.coords.longitude;
-
-    // function haversineFormula() {
-
-    //     let dLat = (lat2 - lat1) * Math.PI / 180.0;
-    //     let dLon = (lng2 - lng1) * Math.PI / 180.0;
-
-    //     lat1 = (lat1) * Math.PI / 180.0;
-    //     lat2 = (lat2) * Math.PI / 180.0;
-
-    //     let a = Math.pow(Math.sin(dLat / 2), 2) + 
-    //                Math.pow(Math.sin(dLon / 2), 2) * 
-    //                Math.cos(lat1) * 
-    //                Math.cos(lat2);
-    //     let rad = 6371;
-    //     let c = 2 * Math.asin(Math.sqrt(a));
-
-    //     return rad * c
-    // }
-    // console.log(haversineFormula(lat1, lng1, lat2, lng2 + "km"))
 }
 
 
@@ -103,5 +79,30 @@ function error(err) {
     }
 }
 
+//     const lat1 = position.coords.latitude
+//     const lng1 = position.coords.longitude
+//     const lat2 = position.coords.latitude
+//     const lng2 = position.coords.longitude
+//     let firstLocation = [lat1, lng1]
+//     let secondLocation = [lat2, lng2]
+//     let distance
+
+//     getHaversineDistance = (firstLocation, secondLocation) => {
+//         const earthRadius = 6371; // km 
+    
+//         const diffLat = (secondLocation.lat-firstLocation.lat) * Math.PI / 180;  
+//         const diffLng = (secondLocation.lng-firstLocation.lng) * Math.PI / 180;  
+    
+//         const arc = Math.cos(
+//                         firstLocation.lat * Math.PI / 180) * Math.cos(secondLocation.lat * Math.PI / 180) 
+//                         * Math.sin(diffLng/2) * Math.sin(diffLng/2)
+//                         + Math.sin(diffLat/2) * Math.sin(diffLat/2);
+//         const line = 2 * Math.atan2(Math.sqrt(arc), Math.sqrt(1-arc));
+    
+//         const distance = earthRadius * line; 
+    
+//         return distance;
+//     }
+//     console.log(getHaversineDistance(firstLocation, secondLocation, distance))
 
  
