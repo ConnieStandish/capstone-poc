@@ -46,6 +46,29 @@ function stop() {
     }
 }
 
+//Calculate Distance
+// function haversineFormula(lat1, lng1, lat2, lng2) {
+//     positions = [lat1, lng1, lat2, lng2]
+//     if (!tracking) {
+//         ((lat1 === lat2) && (lng1 === lng2))
+//         return 0 
+//     }  else {
+//         var radlat1 = Math.PI * lat1/180
+//         var radlat2 = Math.PI * lat2/180
+//         var theta = lng1 - lng2
+//         var radtheta = Math.PI * theta/180
+//         var distance = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+//         if (distance > 1) {
+//             distance = 1
+//         }
+// 		distance = Math.acos(distance)
+//         distance = distance * 180/Math.PI
+//         distance =  distance * 60 * 1.1515
+//         return distance
+//     }
+// }
+
+
 function success(position) {
     //If tracking is not active, then exit.
     if (!tracking) return;
@@ -68,6 +91,7 @@ function success(position) {
     }
 
     map.setView(latLong, 15);
+
 }
 
 
@@ -79,30 +103,28 @@ function error(err) {
     }
 }
 
-//     const lat1 = position.coords.latitude
-//     const lng1 = position.coords.longitude
-//     const lat2 = position.coords.latitude
-//     const lng2 = position.coords.longitude
-//     let firstLocation = [lat1, lng1]
-//     let secondLocation = [lat2, lng2]
-//     let distance
+    // const lat1 = positions.latitude
+    // const lng1 = positions.longitude
+    // const lat2 = positions.latitude
+    // const lng2 = positions.longitude
+    // let firstLocation = [lat1, lng1]
+    // let secondLocation = [lat2, lng2]
+    // let distance
 
-//     getHaversineDistance = (firstLocation, secondLocation) => {
-//         const earthRadius = 6371; // km 
+    // getHaversineDistance = (distance) => {
+    //     const earthRadius = 6371; // km 
     
-//         const diffLat = (secondLocation.lat-firstLocation.lat) * Math.PI / 180;  
-//         const diffLng = (secondLocation.lng-firstLocation.lng) * Math.PI / 180;  
+    //     const diffLat = (secondLocation.lat-firstLocation.lat) * Math.PI / 180;  
+    //     const diffLng = (secondLocation.lng-firstLocation.lng) * Math.PI / 180;  
     
-//         const arc = Math.cos(
-//                         firstLocation.lat * Math.PI / 180) * Math.cos(secondLocation.lat * Math.PI / 180) 
-//                         * Math.sin(diffLng/2) * Math.sin(diffLng/2)
-//                         + Math.sin(diffLat/2) * Math.sin(diffLat/2);
-//         const line = 2 * Math.atan2(Math.sqrt(arc), Math.sqrt(1-arc));
+    //     const arc = Math.cos(
+    //                     firstLocation.lat * Math.PI / 180) * Math.cos(secondLocation.lat * Math.PI / 180) 
+    //                     * Math.sin(diffLng/2) * Math.sin(diffLng/2)
+    //                     + Math.sin(diffLat/2) * Math.sin(diffLat/2);
+    //     const line = 2 * Math.atan2(Math.sqrt(arc), Math.sqrt(1-arc));
     
-//         const distance = earthRadius * line; 
+    //     const distance = earthRadius * line; 
     
-//         return distance;
-//     }
-//     console.log(getHaversineDistance(firstLocation, secondLocation, distance))
-
+    //     return distance;
+    // }
  
