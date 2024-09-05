@@ -32,23 +32,26 @@ function start() {
 }
 
 // Distance Formula Set Up
-// getHaversineDistance = (firstLocation, secondLocation) => {
-//         const earthRadius = 6371; // km 
-    
-//         const diffLat = (secondLocation[0] - firstLocation[0]) * Math.PI / 180;  
-//         const diffLng = (secondLocation[1] - firstLocation [1]) * Math.PI / 180;  
-    
-//         const arc = Math.cos(
-//                         firstLocation[0] * Math.PI / 180) * Math.cos(secondLocation[0] * Math.PI / 180) 
-//                         * Math.sin(diffLng/2) * Math.sin(diffLng/2)
-//                         + Math.sin(diffLat/2) * Math.sin(diffLat/2);
+function haversineDistance(lat1, lon1, lat2,  lon2) {
+    if((lat1 == lat2) && (lon1 == lon2)) {
+        return 0
+    }
+    else {
+        var radlat1 = Math.PI * lat1/180
+        var radlat2 = Math.PI * lat2/180
+        var theta = lon1 - lon2
+        var radtheta = Math.PI * theta/180
+        var distance = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        if (distance > 1) {
+            distance = 1
+        }
+        distance = Math.acos(distance)
+        distance = distance * 180/Math.PI
+        distance = distance * 60 * 1.1515
+        return distance
+    }
+}
 
-//         const line = 2 * Math.atan2(Math.sqrt(arc), Math.sqrt(1-arc));
-    
-//         const distance = earthRadius * line; 
-    
-//         return distance;
-//     }
 
 function stop() {
     tracking = false;
@@ -60,16 +63,19 @@ function stop() {
     console.log(timeMinutes + ' minutes and '  + timeSeconds + ' seconds');
 
     //Calculate Distance in Stop Function
-    // let totalDistance = 0
-    // for (let i=1; i < positions.length; i++) {
-    // }
+   
+    let totalDistance = 0
+
+    for (let i = 1; i < positions.length; i++) {
+        haversineDistance()
+    } 
+   
+    console.log('Total distance: ' + totalDistance.toFixed(2) +  ' miles')
 
     //Stops the Geolocation tracking
     if (watchId) {
         navigator.geolocation.clearWatch(watchId);
     }
-
-    
 }
 
 function success(position) {
@@ -105,38 +111,3 @@ function error(err) {
         alert("Cannot get current location.");
     }
 }
-
-    // const lat1 = positions.latitude
-    // const lng1 = positions.longitude
-    // const lat2 = positions.latitude
-    // const lng2 = positions.longitude
-    // let firstLocation = [lat1, lng1]
-    // let secondLocation = [lat2, lng2]
-    // let distance
-
-    // getHaversineDistance = (distance) => {
-    //     const earthRadius = 6371; // km 
-    
-    //     const diffLat = (secondLocation.lat-firstLocation.lat) * Math.PI / 180;  
-    //     const diffLng = (secondLocation.lng-firstLocation.lng) * Math.PI / 180;  
-    
-    //     const arc = Math.cos(
-    //                     firstLocation.lat * Math.PI / 180) * Math.cos(secondLocation.lat * Math.PI / 180) 
-    //                     * Math.sin(diffLng/2) * Math.sin(diffLng/2)
-    //                     + Math.sin(diffLat/2) * Math.sin(diffLat/2);
-    //     const line = 2 * Math.atan2(Math.sqrt(arc), Math.sqrt(1-arc));
-    
-    //     const distance = earthRadius * line; 
-    
-    //     return distance;
-    // }
- 
-    // function haversineFormula(firstLocation, secondLocation) {
-//     const earthRad = 6371
-   
-//     const diffLat = (secondLocation[0] - firstLocation[0]) * Math.PI / 180
-//     const diffLng = (secondLocation[1] - firstLocation[1]) * Math.PI / 180
-
-//     const arc = Math.cos(firstLocation[0] * Math.PI / 180) * Math.cos(secondLocation[0] * Math.PI / 180) * Math.sin(diffLng/2) * Math.sin(diffLng/2) +  Math.sin(diffLat/2) * Math.sin(diffLat/2)
-    
-// }
