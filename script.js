@@ -31,27 +31,6 @@ function start() {
     }
 }
 
-// Distance Formula Set Up
-function haversineDistance(lat1, lon1, lat2,  lon2) {
-    if((lat1 == lat2) && (lon1 == lon2)) {
-        return 0
-    }
-    else {
-        var radlat1 = Math.PI * lat1/180
-        var radlat2 = Math.PI * lat2/180
-        var theta = lon1 - lon2
-        var radtheta = Math.PI * theta/180
-        var distance = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-        if (distance > 1) {
-            distance = 1
-        }
-        distance = Math.acos(distance)
-        distance = distance * 180/Math.PI
-        distance = distance * 60 * 1.1515
-        return distance
-    }
-}
-
 
 function stop() {
     tracking = false;
@@ -67,10 +46,10 @@ function stop() {
     let totalDistance = 0
 
     for (let i = 1; i < positions.length; i++) {
-        haversineDistance()
+        totalDistance += haversineDistance(positions[i - 1], positions[i])
     } 
    
-    console.log('Total distance: ' + totalDistance.toFixed(2) +  ' miles')
+    console.log('Total distance: ' + totalDistance.toFixed(2) +  ' km')
 
     //Stops the Geolocation tracking
     if (watchId) {
@@ -99,10 +78,11 @@ function success(position) {
         marker = L.marker(latLong).addTo(map);
     }
 
+    
+
     map.setView(latLong, 15);
 
 }
-
 
 function error(err) {
     if (err.code === 1) {
@@ -111,3 +91,33 @@ function error(err) {
         alert("Cannot get current location.");
     }
 }
+
+// Distance Formula Set Up
+const lat1 = position.coords.latitude
+const lon1 = position.coords.longitude
+const lat2 = position.coords.latitude
+const lon2 = position.coords.longitude
+let coord1 = [lat1, lon1]
+let coord2 = [lat2, lon2]
+let distance
+
+function haversineDistance(coord1, coord2) {
+    const earthRad = 6371; //km
+
+    const diffLat = (coord2[0] - coord1[0]) * Math.PI / 180;  
+    const diffLng = (coord2[1] - coord2[1]) * Math.PI / 180;
+    
+    const arc = Math.cos(
+       coord1[0] * Math.PI / 180) * Math.cos(coord2[0] * Math.PI / 180) 
+        * Math.sin(diffLng/2) * Math.sin(diffLng/2)
+        + Math.sin(diffLat/2) * Math.sin(diffLat/2);
+
+    const line = 2 * Math.atan2(Math.sqrt(arc), Math.sqrt(1-arc));
+
+    const distance = earthRad * line
+
+    console.log(distance)
+
+    return  distance
+}
+console.log(haversineDistance(coord1, coord2))
