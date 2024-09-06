@@ -39,7 +39,7 @@ function stop() {
     const time = (finishRun - startRun) / 1000;
     const timeMinutes = Math.floor(time / 60);
     const timeSeconds = Math.floor(time % 60);
-    console.log(timeMinutes + ' minutes and '  + timeSeconds + ' seconds');
+    document.getElementById("time").innerHTML = (timeMinutes + ' minutes and '  + timeSeconds + ' seconds');
 
     //Calculate Distance in Stop Function
    
