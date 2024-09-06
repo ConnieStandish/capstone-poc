@@ -49,7 +49,7 @@ function stop() {
         totalDistance += haversineDistance(positions[i - 1], positions[i])
     } 
    
-    console.log('Total distance: ' + totalDistance.toFixed(2) +  ' km')
+    document.getElementById("distance").innerHTML = ('Total distance: ' + totalDistance.toFixed(2) +  ' km')
 
     //Stops the Geolocation tracking
     if (watchId) {
