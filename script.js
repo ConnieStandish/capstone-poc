@@ -93,13 +93,6 @@ function error(err) {
 }
 
 // Distance Formula Set Up
-const lat1 = position.coords.latitude
-const lon1 = position.coords.longitude
-const lat2 = position.coords.latitude
-const lon2 = position.coords.longitude
-let coord1 = [lat1, lon1]
-let coord2 = [lat2, lon2]
-let distance
 
 function haversineDistance(coord1, coord2) {
     const earthRad = 6371; //km
@@ -116,8 +109,6 @@ function haversineDistance(coord1, coord2) {
 
     const distance = earthRad * line
 
-    console.log(distance)
-
     return  distance
 }
-console.log(haversineDistance(coord1, coord2))
+
